@@ -17,7 +17,7 @@
 
 #### script final do projeto (main) 
 - importar funções do modulo_1, modulo_2, modulo_3 e carregar arquivo .pkl
-- após a função do modulo_3 informar a melhor jogada: bola, caçapa e ângulo, uso de opencv em cima da imagem original para levar as informações obtidas diretamente acima da imagem, como abaixo:
+- após a função do modulo_3 informar a melhor jogada: bola, caçapa e ângulo, uso de opencv em cima da imagem original para levar as informações obtidas diretamente acima da imagem, como abaixo (possibilidade de virar um modulo_4):
 
 <img width="2816" height="1536" alt="Gemini_Generated_Image_eu3uj1eu3uj1eu3u" src="https://github.com/user-attachments/assets/55950603-7c09-43da-8f25-135d5bdd0021" />
 
