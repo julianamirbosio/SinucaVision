@@ -11,6 +11,6 @@
 - entrada: vetor/tabela de dados
 - saída: dados numéricos para aprendizado
 
-####módulo 3:  IA (random forest) - google colab
+#### módulo 3:  IA (random forest) - google colab
 - entrada: dados numéricos para aprendizado de máquina
 - saída: previsão da melhor caçapa (classe) ou ângulo exato (regressão)
