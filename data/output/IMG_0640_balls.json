@@ -1,0 +1,126 @@
+{
+    "cacapas": [
+        {
+            "posicao": "superior_esq",
+            "x": 16,
+            "y": 16
+        },
+        {
+            "posicao": "superior_meio",
+            "x": 400,
+            "y": 16
+        },
+        {
+            "posicao": "superior_dir",
+            "x": 784,
+            "y": 16
+        },
+        {
+            "posicao": "inferior_esq",
+            "x": 16,
+            "y": 384
+        },
+        {
+            "posicao": "inferior_meio",
+            "x": 400,
+            "y": 384
+        },
+        {
+            "posicao": "inferior_dir",
+            "x": 784,
+            "y": 384
+        }
+    ],
+    "bolas": [
+        {
+            "tipo": "lisa",
+            "x": 210,
+            "y": 370,
+            "raio": 10
+        },
+        {
+            "tipo": "listrada",
+            "x": 144,
+            "y": 369,
+            "raio": 9
+        },
+        {
+            "tipo": "branca",
+            "x": 645,
+            "y": 320,
+            "raio": 7
+        },
+        {
+            "tipo": "lisa",
+            "x": 450,
+            "y": 292,
+            "raio": 10
+        },
+        {
+            "tipo": "listrada",
+            "x": 33,
+            "y": 255,
+            "raio": 8
+        },
+        {
+            "tipo": "lisa",
+            "x": 505,
+            "y": 249,
+            "raio": 8
+        },
+        {
+            "tipo": "lisa",
+            "x": 623,
+            "y": 206,
+            "raio": 6
+        },
+        {
+            "tipo": "listrada",
+            "x": 24,
+            "y": 207,
+            "raio": 9
+        },
+        {
+            "tipo": "lisa",
+            "x": 591,
+            "y": 195,
+            "raio": 5
+        },
+        {
+            "tipo": "listrada",
+            "x": 354,
+            "y": 112,
+            "raio": 8
+        },
+        {
+            "tipo": "listrada",
+            "x": 110,
+            "y": 79,
+            "raio": 15
+        },
+        {
+            "tipo": "listrada",
+            "x": 33,
+            "y": 59,
+            "raio": 8
+        },
+        {
+            "tipo": "lisa",
+            "x": 298,
+            "y": 43,
+            "raio": 9
+        },
+        {
+            "tipo": "lisa",
+            "x": 152,
+            "y": 42,
+            "raio": 9
+        },
+        {
+            "tipo": "lisa",
+            "x": 320,
+            "y": 18,
+            "raio": 5
+        }
+    ]
+}
