@@ -1,3 +1,8 @@
+# Gerado pelo pipeline: detector → feature_eng → treino
+data/output/
+data/dataset.csv
+models/
+
 .venv/
 
 # Byte-compiled / optimized / DLL files
