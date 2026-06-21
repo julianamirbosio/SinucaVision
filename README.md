@@ -39,20 +39,26 @@ Foto da mesa
 SINUCAVISION/
 ├── modulo1/
 │   ├── 00_converter_heic.ipynb   # converte qualquer imagem para JPG
-│   └── 01_homografia.ipynb       # normaliza perspectiva (top-down)
+│   ├── 01_homografia.ipynb       # normaliza perspectiva (top-down) — interativo
+│   ├── 02_detector_bolas.ipynb   # detecta bolas com HSV + Watershed
+│   └── 03_visualizador.ipynb     # visualiza detecções para debug
 ├── modulo2/
 │   └── 04_feature_eng.ipynb      # gera dataset.csv com features geométricas
 ├── modulo3/
 │   ├── 05_treino_rf.ipynb        # treina o modelo Random Forest
-│   └── 06_inferencia.ipynb       # faz previsões em novas fotos
+│   └── 06_inferencia.ipynb       # recomenda jogada para uma foto específica
 ├── data/                         # ignorada pelo git (ver .gitignore)
 │   ├── raw/                      # fotos originais (HEIC, PNG, etc.)
 │   ├── converted/                # fotos convertidas para JPG
 │   ├── normalized/               # fotos em top-down 800×400 px
 │   ├── annotations/              # quinas da mesa (JSON por imagem)
+│   ├── output/
+│   │   └── <nome>/               # uma pasta por imagem
+│   │       ├── <nome>_balls.json # coordenadas e tipos detectados
+│   │       └── <nome>_viz.png    # imagem anotada com legenda
 │   └── dataset.csv               # features extraídas (gerado pelo módulo 2)
 ├── models/                       # modelos treinados (.pkl) — ignorado pelo git
-├── utils.py                      # constantes e funções compartilhadas
+├── rodar_pipeline.sh             # roda o pipeline de treino completo
 ├── requirements.txt
 ├── .gitignore
 └── README.md
@@ -73,8 +79,8 @@ SINUCAVISION/
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/SINUCAVISION.git
-cd SINUCAVISION
+git clone git@github.com:julianamirbosio/SinucaVision.git
+cd SinucaVision
 ```
 
 ### 2. Crie e ative o ambiente virtual
@@ -128,30 +134,40 @@ Google Drive > Colab Notebooks > SinucaVision > data/
 | Passo | Notebook | O que faz |
 |-------|----------|-----------|
 | 1 | `modulo1/00_converter_heic.ipynb` | Converte fotos de `raw/` para JPG em `converted/` |
-| 2 | `modulo1/01_homografia.ipynb` | Clique nas 4 quinas → gera `normalized/` (top-down) |
-| 3 | `modulo1/02_detector_bolas.ipynb` | Detecta bolas com HoughCircles + HSV, salva JSON |
-| 4 | `modulo1/03_visualizador.ipynb` | Visualiza detecções para debug |
+| 2 | `modulo1/01_homografia.ipynb` | Clique nas 4 quinas → gera `normalized/` (top-down) ⚠ interativo |
+| 3 | `modulo1/02_detector_bolas.ipynb` | Detecta bolas com HSV + Watershed, salva JSON por imagem |
+| 4 | `modulo1/03_visualizador.ipynb` | Visualiza detecções para debug (uso pontual) |
 | 5 | `modulo2/04_feature_eng.ipynb` | Gera `data/dataset.csv` com vetor de features |
 | 6 | `modulo3/05_treino_rf.ipynb` | Treina Random Forest, salva `models/modelo.pkl` |
-| 7 | `modulo3/06_inferencia.ipynb` | Carrega modelo e faz previsões em novas fotos |
+| 7 | `modulo3/06_inferencia.ipynb` | Recomenda jogada para uma foto específica (uso pontual) |
+
+---
+
+## Pipeline de treino automatizado
+
+Os passos 1 e 2 da tabela acima exigem execução manual (conversão de arquivos e anotação interativa das quinas). Feito isso, os passos 3 a 6 podem ser executados de uma vez com:
+
+```bash
+./rodar_pipeline.sh
+```
+
+O script executa os notebooks na ordem correta usando o kernel `sinucavision` e atualiza os outputs de cada um. Qualquer alteração feita nos notebooks é refletida automaticamente na próxima execução.
+
+**O que ele faz:**
+
+| Etapa | Notebook executado | Saída gerada |
+|-------|--------------------|--------------|
+| 1/3 | `02_detector_bolas` | `data/output/<nome>/` com JSON + imagem anotada |
+| 2/3 | `04_feature_eng` | `data/dataset.csv` reconstruído do zero |
+| 3/3 | `05_treino_rf` | `models/modelo.pkl` atualizado |
+
+> Para usar o modelo treinado em uma nova foto, abra `06_inferencia.ipynb` manualmente e configure `NOME_IMAGEM` e `MEU_GRUPO`.
 
 ---
 
 ## Dataset
 
-As fotos do dataset foram tiradas com iPhone (formato HEIC).
-O notebook `00_converter_heic` suporta:
-
-| Extensão | Suporte |
-|----------|---------|
-| `.HEIC` / `.heic` | ✅ via pillow-heif |
-| `.JPG` / `.JPEG` | ✅ nativo |
-| `.PNG` | ✅ nativo |
-| `.WEBP` | ✅ nativo |
-| `.TIFF` / `.TIF` | ✅ nativo |
-| `.BMP` | ✅ nativo |
-
-As fotos **não são commitadas** no repositório (`.gitignore`).
+> !! Colocar link da pasta do dataset, fazer a integracao de extracao das fotos por código, apagar as pastas locais e remotas, colocar no .gitignore
 
 ---
 
