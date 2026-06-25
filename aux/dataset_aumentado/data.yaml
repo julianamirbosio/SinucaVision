@@ -1,0 +1,4 @@
+train: /home/bridge/SinucaVision/dataset_aumentado/images/train
+val: /home/bridge/SinucaVision/dataset_aumentado/images/val
+nc: 1
+names: ['bola']
