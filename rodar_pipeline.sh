@@ -8,13 +8,16 @@
 #      (clique interativo — inviável automatizar)
 #
 # ESTE SCRIPT RODA:
-#   02_detector_bolas  → detecta bolas e gera JSONs em data/output/<nome>/
-#   04_feature_eng     → reconstrói data/dataset.csv
-#   05_treino_rf       → treina o modelo e salva models/modelo.pkl
+#   04_detector_bolas  → detecta bolas (YOLO) e gera JSONs em data/output/<nome>_balls.json
+#   06_feature_eng     → reconstrói data/dataset.csv
+#   07_treino_rf       → treina o modelo e salva models/random_forest_jogada.pkl
+#
+# PRÉ-REQUISITO ADICIONAL: models/yolo_deteccao_bolas.pt já treinado
+#   (ver "Como criar os modelos" no README — este script não treina o YOLO)
 #
 # NOTEBOOKS DE USO PONTUAL (rode manualmente quando quiser):
-#   03_visualizador    → debug de detecções
-#   06_inferencia      → recomenda jogada para uma imagem específica
+#   05_visualizador    → debug de detecções
+#   08_inferencia      → recomenda jogada para uma imagem específica
 
 set -e
 cd "$(dirname "$0")"
@@ -27,16 +30,16 @@ echo "=== SinucaVision Pipeline ==="
 echo ""
 
 echo "[1/3] Detector de bolas..."
-$JUPYTER modulo1/02_detector_bolas.ipynb
+$JUPYTER modulo1/04_detector_bolas.ipynb
 echo "      OK"
 
 echo "[2/3] Engenharia de features..."
-$JUPYTER modulo2/04_feature_eng.ipynb
+$JUPYTER modulo2/06_feature_eng.ipynb
 echo "      OK"
 
 echo "[3/3] Treino do Random Forest..."
-$JUPYTER modulo3/05_treino_rf.ipynb
+$JUPYTER modulo3/07_treino_rf.ipynb
 echo "      OK"
 
 echo ""
-echo "=== Concluído. Modelo salvo em models/modelo.pkl ==="
+echo "=== Concluído. Modelo salvo em models/random_forest_jogada.pkl ==="
